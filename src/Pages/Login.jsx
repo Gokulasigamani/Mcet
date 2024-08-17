@@ -13,7 +13,7 @@ function Login() {
 
     const SubmitHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:2000/login', { 
+        axios.post('https://mcet-backend.onrender.com', { 
             rollnumber: rollNumber, 
             password
         })
@@ -37,7 +37,7 @@ function Login() {
       <>
         <div className="max-sm:w-[100vw] max-sm:h-[100vh] sm:hidden">
           <header>
-            <img src={Logo} className="w-[80%] m-auto pt-32" alt="Logo" />
+            <img src={Logo} className="w-[80%] m-auto pt-28" alt="Logo" />
           </header>
 
           <div className="w-[350px] pb-7 pt-3 rounded-lg m-auto mt-5 border shadow-lg ">

@@ -2,38 +2,49 @@ import { useState, useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
 import { useLocation } from "react-router-dom";
+import BusBooking from "../Components/BusBooking"; // Import your BusBooking component
 
 function Home() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [rollNumber, setRollNumber] = useState("");
-    const location = useLocation();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [rollNumber, setRollNumber] = useState("");
+  const [activeComponent, setActiveComponent] = useState("welcome"); // State to manage the active component
+  const location = useLocation();
 
-    useEffect(() => {
-        // Assuming the rollNumber is stored in localStorage after login
-        const rollNumberFromStorage = localStorage.getItem("rollNumber");
-        setRollNumber(rollNumberFromStorage || "");
-    }, [location]);
+  useEffect(() => {
+    const rollNumberFromStorage = localStorage.getItem("rollNumber");
+    setRollNumber(rollNumberFromStorage || "");
+  }, [location]);
 
-    const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
-    return (
-        <div className="relative min-h-screen bg-gray-100">
-    
-            <Navbar toggleSidebar={toggleSidebar} />
+  const handleMenuClick = (component) => {
+    setActiveComponent(component); // Update the active component
+    setIsSidebarOpen(false); // Close the sidebar when an item is clicked
+  };
 
+  return (
+    <div className="relative min-h-screen bg-gray-100">
+      <Navbar toggleSidebar={toggleSidebar} />
 
-            <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} onMenuClick={handleMenuClick} />
 
-        
-            <main className="p-8">
-                <h1 className={`text-3xl font-bold text-center transition-opacity duration-1000 ${rollNumber ? "opacity-100" : "opacity-0"}`}>
-                    Welcome {rollNumber}
-                </h1>
-            </main>
-        </div>
-    );
+      <main className="p-8">
+        {activeComponent === "welcome" && (
+          <h1
+            className={`text-3xl font-bold text-center transition-opacity duration-1000 ${
+              rollNumber ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            Welcome {rollNumber}
+          </h1>
+        )}
+
+        {activeComponent === "busBooking" && <BusBooking />} {/* Conditionally render BusBooking component */}
+      </main>
+    </div>
+  );
 }
 
 export default Home;

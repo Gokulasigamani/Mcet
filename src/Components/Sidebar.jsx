@@ -1,16 +1,16 @@
 import React from 'react';
 
-function Sidebar({ isOpen, toggleSidebar }) {
+function Sidebar({ isOpen, toggleSidebar, onMenuClick }) {
     return (
         <>
             {/* Backdrop */}
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-gray-800 bg-opacity-50 z-40"
-                    onClick={toggleSidebar}
+                    onClick={toggleSidebar} // Close the sidebar when backdrop is clicked
                 />
             )}
-            
+
             {/* Sidebar */}
             <aside
                 className={`fixed top-0 left-0 h-full bg-white shadow-lg z-50 transition-transform duration-500 transform ${
@@ -18,10 +18,11 @@ function Sidebar({ isOpen, toggleSidebar }) {
                 } md:hidden`}
                 style={{ width: '250px' }}
             >
-                <div className="p-4">
+                <div className="p-4 relative">
+                    {/* Close Button */}
                     <button
-                        className="text-gray-500 absolute right-3 hover:text-gray-700 active:text-red-600"
-                        onClick={toggleSidebar}
+                        className="text-gray-500 absolute top-4 right-4 hover:text-gray-700 active:text-red-600"
+                        onClick={toggleSidebar} // Close the sidebar
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -38,16 +39,24 @@ function Sidebar({ isOpen, toggleSidebar }) {
                             />
                         </svg>
                     </button>
-                    <ul className="mt-20">
+
+                    {/* Sidebar Links */}
+                    <ul className="mt-20 space-y-4">
                         <li className="py-2">
-                            <a href="/bus-booking" className="text-gray-800  px-4 py-2 hover:text-indigo-600">
+                            <button
+                                onClick={() => onMenuClick('busBooking')} // Pass the component to be rendered
+                                className="text-gray-800 block w-full text-left px-4 py-2 hover:text-indigo-600"
+                            >
                                 Bus Booking
-                            </a>
+                            </button>
                         </li>
                         <li className="py-2">
-                            <a href="/hostel-complaints" className="text-gray-800 hover:text-indigo-600">
+                            <button
+                                onClick={() => onMenuClick('hostelComplaints')} // Pass other components similarly
+                                className="text-gray-800 block w-full text-left px-4 py-2 hover:text-indigo-600"
+                            >
                                 Hostel Complaints
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </div>
