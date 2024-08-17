@@ -13,18 +13,18 @@ const BusCard = ({ busNo, busRegNo, route, stages }) => {
         <div className="max-sm:w-full">
           <div className="w-[350px] pb-6 rounded-lg bg-slate-100 shadow-2xl m-auto border">
             <div className="px-4 pt-4">
-              <h1 className="font-bold text-2xl text-orange-400">Bus No: {busNo}</h1>
+              <h1 className="font-bold text-xl text-">Bus No: {busNo}</h1>
               <h1 className="font-medium mt-1 text-md text-black">{busRegNo}</h1>
-              <button className="mt-1 text-lg font-bold text-left ">{route}</button>
+              <button className="mt-1 text-md font-bold text-left ">{route}</button>
               <br />
-              <div className="flex gap-5">
+              <div className="flex gap-5 items-center mt-2">
                 <button
-                  className="mt-5 text-lg px-4 text-white py-1 tracking-widest bg-orange-500 font-semibold rounded-lg"
+                  className=" text-md px-2 text-white py-1 tracking-widest bg-indigo-500 font-semibold rounded-md"
                   onClick={openPopup}
                 >
                   Stages
                 </button>
-                <button className="mt-5 text-lg px-4 text-white py-1 tracking-widest bg-orange-500 font-semibold rounded-lg">
+                <button  className=" text-md px-2 text-white py-1 tracking-widest bg-indigo-500 font-semibold rounded-md">
                   Book
                 </button>
               </div>
