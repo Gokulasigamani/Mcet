@@ -13,7 +13,7 @@ function Login() {
 
     const SubmitHandler = (e) => {
         e.preventDefault();
-        axios.post('https://mcet-backend.onrender/login', { 
+        axios.post('https://mcet-backend.onrender.com/login', { 
             rollnumber: rollNumber, 
             password
         })
