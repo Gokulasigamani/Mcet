@@ -5,7 +5,7 @@ const BusBooking = () => {
   const busCards = [card1Data, card2Data,card3Data,card4Data,card5Data];
 
   return (
-    <div className=' max-sm:w-full m-auto flex items-center flex-col gap-5'>
+    <div className=' max-sm:w-full flex items-center justify-center flex-col gap-5'>
       {busCards.map((cardData, index) => (
         <BusCard
           key={index}

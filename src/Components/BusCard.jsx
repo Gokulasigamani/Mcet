@@ -10,8 +10,8 @@ const BusCard = ({ busNo, busRegNo, route, stages }) => {
  return (
     <>
       <section>
-        <div className="max-sm:w-full m ">
-          <div className="w-[320px] pb-6 rounded-lg bg-slate-200 shadow-2xl  border">
+        <div className="max-sm:w-full">
+          <div className="w-[330px] flex items-center pb-6 rounded-lg bg-slate-200 shadow-2xl  border">
             <div className="px-4 pt-4">
               <h1 className="font-bold text-lg text-">Bus No: {busNo}</h1>
               <h1 className="font-medium mt-1 text-md text-black">{busRegNo}</h1>
