@@ -7,7 +7,7 @@ const BusCard = ({ busNo, busRegNo, route, stages }) => {
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
 
-  return (
+ return (
     <>
       <section>
         <div className="max-sm:w-full">

@@ -25,7 +25,7 @@ function Home() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-100">
+    <div className=" max-sm:w-full m-auto  relative min-h-screen bg-indigo-100">
       <Navbar toggleSidebar={toggleSidebar} />
 
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} onMenuClick={handleMenuClick} />
