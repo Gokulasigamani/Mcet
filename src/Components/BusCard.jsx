@@ -1,11 +1,19 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import StagesPopup from './StagesPopup';
 
 const BusCard = ({ busNo, busRegNo, route, stages }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
+ 
+ 
+  const navigate=useNavigate();
+   
+  const BookingHandler=()=>
+  {
+    navigate('/booking');
+  }
 
  return (
     <>
@@ -24,7 +32,7 @@ const BusCard = ({ busNo, busRegNo, route, stages }) => {
                 >
                   Stages
                 </button>
-                <button  className=" text-sm px-3 text-white py-1 tracking-widest bg-orange-500 font-semibold rounded-md">
+                <button  onClick={BookingHandler} className=" text-sm px-3 text-white py-1 tracking-widest bg-orange-500 font-semibold rounded-md">
                   Book
                 </button>
               </div>

@@ -1,17 +1,17 @@
-import React from 'react';
+
 
 function Sidebar({ isOpen, toggleSidebar, onMenuClick }) {
     return (
         <>
-            {/* Backdrop */}
+        
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-gray-800 bg-opacity-50 z-40"
-                    onClick={toggleSidebar} // Close the sidebar when backdrop is clicked
+                    onClick={toggleSidebar} 
                 />
             )}
 
-            {/* Sidebar */}
+    
             <aside
                 className={`fixed top-0 left-0 h-full bg-white shadow-lg z-50 transition-transform duration-500 transform ${
                     isOpen ? "translate-x-0" : "-translate-x-full"
@@ -19,10 +19,10 @@ function Sidebar({ isOpen, toggleSidebar, onMenuClick }) {
                 style={{ width: '250px' }}
             >
                 <div className="p-4 relative">
-                    {/* Close Button */}
+                
                     <button
                         className="text-gray-500 absolute top-4 right-4 hover:text-gray-700 active:text-red-600"
-                        onClick={toggleSidebar} // Close the sidebar
+                        onClick={toggleSidebar} 
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -40,11 +40,11 @@ function Sidebar({ isOpen, toggleSidebar, onMenuClick }) {
                         </svg>
                     </button>
 
-                    {/* Sidebar Links */}
+        
                     <ul className="mt-20 space-y-4">
                         <li className="py-2">
                             <button
-                                onClick={() => onMenuClick('busBooking')} // Pass the component to be rendered
+                                onClick={() => onMenuClick('busBooking')}
                                 className="text-gray-800 block w-full text-left px-4 py-2 hover:text-indigo-600"
                             >
                                 Bus Booking
@@ -52,7 +52,7 @@ function Sidebar({ isOpen, toggleSidebar, onMenuClick }) {
                         </li>
                         <li className="py-2">
                             <button
-                                onClick={() => onMenuClick('hostelComplaints')} // Pass other components similarly
+                                onClick={() => onMenuClick('hostelComplaints')} 
                                 className="text-gray-800 block w-full text-left px-4 py-2 hover:text-indigo-600"
                             >
                                 Hostel Complaints

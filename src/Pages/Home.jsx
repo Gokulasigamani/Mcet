@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
 import { useLocation } from "react-router-dom";
-import BusBooking from "../Components/BusBooking"; // Import your BusBooking component
+import BusBooking from "../Components/BusBooking"; 
 
 function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -20,8 +20,8 @@ function Home() {
   };
 
   const handleMenuClick = (component) => {
-    setActiveComponent(component); // Update the active component
-    setIsSidebarOpen(false); // Close the sidebar when an item is clicked
+    setActiveComponent(component); 
+    setIsSidebarOpen(false);
   };
 
   return (
