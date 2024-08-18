@@ -1,6 +1,12 @@
 import { useState } from "react";
+import { useLocation,useNavigate } from "react-router-dom";
+import NavLogo from "../assets/NavLogo.png"
+
 
 function BookingPage() {
+  const location = useLocation();
+  const { busNo, busRegNo, route, stages = [] } = location.state || {}; // Extract the data from state
+
   const [name, setName] = useState("");
   const [rollNumber, setRollNumber] = useState("");
   const [ticketDate, setTicketDate] = useState("");
@@ -9,18 +15,64 @@ function BookingPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log({ name, rollNumber, ticketDate, timeOfDay, stage });
+
+    console.log({
+      name,
+      rollNumber,
+      ticketDate,
+      timeOfDay,
+      stage,
+      busNo,
+      route,
+    });
+  };
+  
+  const navigate=useNavigate();
+  const handleBackClick = () => {
+    navigate('/home');
   };
 
   return (
-    <div className="sm:hidden flex justify-center items-center h-[100vh] bg-gray-100"> {/* Hidden for larger screens */}
-      <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-sm"> {/* max-w-sm ensures it’s mobile-optimized */}
-        <h2 className="text-xl font-bold text-center text-indigo-600 mb-5">
+    <>
+     <nav className="max-sm:w-full h-[60px] bg-indigo-500">
+      <div className="max-sm:w-[97%] h-[100%] flex justify-between items-center">
+        {/* Back Icon */}
+        <button onClick={handleBackClick} className="flex items-center px-4 py-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="white"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+            />
+          </svg>
+        </button>
+        <img 
+          src={NavLogo} 
+          alt="Profile" 
+          className="w-[100px]"
+        />
+      </div>
+    </nav>
+    <div className="sm:hidden max-sm:w-full flex justify-center items-center h-[100vh] bg-gray-100">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-sm">
+        <button className="text-xl px-4 py-2 m-auto bg-indigo-500 flex  text-white rounded-lg font-bold text-center mb-5">
           Book Your Ticket
-        </h2>
+        </button>
         <form onSubmit={handleSubmit}>
-          {/* Name */}
+          {/* Display Bus Info */}
+          <div className="mb-4 text-center">
+            <p className="text-gray-700 font-bold">Bus No: {busNo}</p>
+            <p className="text-gray-700 font-medium">{route}</p>
+          </div>
+
+          {/* Name Input */}
           <div className="mb-4">
             <label htmlFor="name" className="block text-gray-700 font-medium">
               Name
@@ -36,7 +88,7 @@ function BookingPage() {
             />
           </div>
 
-          {/* Roll Number */}
+          {/* Roll Number Input */}
           <div className="mb-4">
             <label htmlFor="rollNumber" className="block text-gray-700 font-medium">
               Roll Number
@@ -52,7 +104,7 @@ function BookingPage() {
             />
           </div>
 
-          {/* Ticket Date */}
+          {/* Date of Ticket */}
           <div className="mb-4">
             <label htmlFor="ticketDate" className="block text-gray-700 font-medium">
               Date of Ticket
@@ -99,10 +151,11 @@ function BookingPage() {
               onChange={(e) => setStage(e.target.value)}
             >
               <option value="">Select Stage</option>
-              <option value="Stage 1">Stage 1</option>
-              <option value="Stage 2">Stage 2</option>
-              <option value="Stage 3">Stage 3</option>
-              <option value="Stage 4">Stage 4</option>
+              {stages.map((stage) => (
+                <option key={stage.no} value={stage.name}>
+                  {stage.name}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -115,6 +168,7 @@ function BookingPage() {
         </form>
       </div>
     </div>
+    </>
   );
 }
 

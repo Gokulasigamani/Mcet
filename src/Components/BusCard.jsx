@@ -6,22 +6,21 @@ const BusCard = ({ busNo, busRegNo, route, stages }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
- 
- 
-  const navigate=useNavigate();
-   
-  const BookingHandler=()=>
-  {
-    navigate('/booking');
-  }
+  
+  const navigate = useNavigate();
 
- return (
+  const BookingHandler = () => {
+    
+    navigate('/booking', { state: { busNo, busRegNo, route, stages } });
+  };
+
+  return (
     <>
       <section>
         <div className="max-sm:w-full">
-          <div className="w-[330px] flex items-center pb-6 rounded-lg bg-slate-200 shadow-2xl  border">
+          <div className="w-[330px] flex items-center pb-6 rounded-lg bg-slate-200 shadow-2xl border">
             <div className="px-4 pt-4">
-              <h1 className="font-bold text-lg text-">Bus No: {busNo}</h1>
+              <h1 className="font-bold text-lg">Bus No: {busNo}</h1>
               <h1 className="font-medium mt-1 text-md text-black">{busRegNo}</h1>
               <button className="mt-1 text-md font-bold text-left ">{route}</button>
               <br />
@@ -32,7 +31,10 @@ const BusCard = ({ busNo, busRegNo, route, stages }) => {
                 >
                   Stages
                 </button>
-                <button  onClick={BookingHandler} className=" text-sm px-3 text-white py-1 tracking-widest bg-orange-500 font-semibold rounded-md">
+                <button
+                  onClick={BookingHandler}
+                  className=" text-sm px-3 text-white py-1 tracking-widest bg-orange-500 font-semibold rounded-md"
+                >
                   Book
                 </button>
               </div>
