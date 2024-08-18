@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
 import { useLocation } from "react-router-dom";
 import BusBooking from "../Components/BusBooking"; 
+import ComplaintsHome from "../Components/ComplaintsHome";
 
 function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -42,6 +43,7 @@ function Home() {
         )}
 
         {activeComponent === "busBooking" && <BusBooking />} {/* Conditionally render BusBooking component */}
+        {activeComponent === "hostelComplaints" && <ComplaintsHome/>}
       </main>
     </div>
   );

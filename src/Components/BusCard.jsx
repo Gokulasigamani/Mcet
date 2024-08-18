@@ -1,18 +1,30 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import StagesPopup from './StagesPopup';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import StagesPopup from "./StagesPopup";
 
 const BusCard = ({ busNo, busRegNo, route, stages }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
-  
+
   const navigate = useNavigate();
 
   const BookingHandler = () => {
-    
-    navigate('/booking', { state: { busNo, busRegNo, route, stages } });
+    navigate("/booking", { state: { busNo, busRegNo, route, stages } });
   };
+
+  useEffect(() => {
+    if (isPopupOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isPopupOpen]);
 
   return (
     <>
@@ -21,8 +33,12 @@ const BusCard = ({ busNo, busRegNo, route, stages }) => {
           <div className="w-[330px] flex items-center pb-6 rounded-lg bg-slate-200 shadow-2xl border">
             <div className="px-4 pt-4">
               <h1 className="font-bold text-lg">Bus No: {busNo}</h1>
-              <h1 className="font-medium mt-1 text-md text-black">{busRegNo}</h1>
-              <button className="mt-1 text-md font-bold text-left ">{route}</button>
+              <h1 className="font-medium mt-1 text-md text-black">
+                {busRegNo}
+              </h1>
+              <button className="mt-1 text-md font-bold text-left ">
+                {route}
+              </button>
               <br />
               <div className="flex gap-5 items-center mt-3">
                 <button
@@ -43,7 +59,6 @@ const BusCard = ({ busNo, busRegNo, route, stages }) => {
         </div>
       </section>
 
-      {/* Popup */}
       <StagesPopup isOpen={isPopupOpen} onClose={closePopup} stages={stages} />
     </>
   );
