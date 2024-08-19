@@ -11,10 +11,10 @@ function Sidebar({ isOpen, toggleSidebar, onMenuClick, activeMenu }) {
             )}
 
             <aside
-                className={`fixed top-0 left-0 h-full bg-white shadow-lg z-50 transition-transform duration-300 transform ${
+                className={`fixed top-0 left-0 h-full bg-indigo-300 shadow-lg z-50 transition-transform duration-300 transform ${
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 } md:hidden`}
-                style={{ width: '250px' }}
+                style={{ width: '220px' }}
             >
                 <div className="p-4 relative">
                     <button
@@ -28,7 +28,7 @@ function Sidebar({ isOpen, toggleSidebar, onMenuClick, activeMenu }) {
                         <li>
                             <button
                                 onClick={() => onMenuClick('busBooking')}
-                                className={`block w-full text-left px-4 py-2 rounded-lg transition-colors duration-300 
+                                className={`block w-full text-left px-4 py-2 rounded-md font-semibold transition-colors duration-300 
                                     ${activeMenu === 'busBooking' ? 
                                     'bg-indigo-500 text-white border-l-4 border-indigo-600' : 
                                     'bg-gray-100 text-gray-800 hover:bg-indigo-100 border-l-4 border-transparent'}
@@ -45,7 +45,7 @@ function Sidebar({ isOpen, toggleSidebar, onMenuClick, activeMenu }) {
                         <li>
                             <button
                                 onClick={() => onMenuClick('hostelComplaints')} 
-                                className={`block w-full text-left px-4 py-2 rounded-lg transition-colors duration-300 
+                                className={`block w-full text-left px-4 py-2 rounded-md font-semibold transition-colors duration-300 
                                     ${activeMenu === 'hostelComplaints' ? 
                                     'bg-indigo-500 text-white border-l-4 border-indigo-600' : 
                                     'bg-gray-100 text-gray-800 hover:bg-indigo-100 border-l-4 border-transparent'}

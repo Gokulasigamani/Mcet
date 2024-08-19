@@ -21,11 +21,16 @@ function Login() {
             password
         })
         .then(result => {
-            console.log(result);
             setLoading(false); 
             setErrorMessage(""); 
             setInputError(false); 
-            navigate('/home'); 
+
+            // If admin, navigate to admin panel
+            if (result.data.isAdmin) {
+                navigate('/admin');
+            } else {
+                navigate('/home');
+            }
         })
         .catch(err => {
             console.log(err);
@@ -56,7 +61,7 @@ function Login() {
                     required
                     className={`w-full mt-2 py-3 px-2 border outline-orange-400 rounded-lg transition-all focus:shadow-xl ${
                       inputError ? "border-red-500" : ""
-                    }`} // Apply red border if there's an error
+                    }`}
                     placeholder="Enter Your Roll Number"
                     value={rollNumber}
                     onChange={(e) => setRollNumber(e.target.value)}
@@ -71,14 +76,13 @@ function Login() {
                     required
                     className={`w-full mt-2 py-3 px-2 border outline-orange-400 rounded-lg transition-all focus:shadow-xl ${
                       inputError ? "border-red-500" : ""
-                    }`} // Apply red border if there's an error
+                    }`}
                     placeholder="Enter Your Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
-                {/* Error Message */}
                 {errorMessage && (
                   <p className="text-red-500 mt-2 text-center">{errorMessage}</p>
                 )}
@@ -86,7 +90,7 @@ function Login() {
                 <button
                   type="submit"
                   className="px-5 py-1 bg-orange-200 mt-4 text-orange-600 rounded-md text-lg font-medium transition-all hover:bg-orange-500 hover:text-orange-100 flex justify-center items-center"
-                  disabled={loading} // Disable button when loading
+                  disabled={loading}
                 >
                   {loading ? (
                     <svg

@@ -3,6 +3,7 @@ import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import BookingPage from "../Pages/BookingPage";
 import Complaints from "../Pages/Complaints";
+import Admin from "../Pages/Admin";
 
 function Router() {
   return (
@@ -12,6 +13,7 @@ function Router() {
         <Route path="home" element={<Home />}/>
         <Route path="booking" element={<BookingPage/>} />
         <Route path="complaints" element={<Complaints/>} />
+        <Route path="admin" element={<Admin/>} />
       
         
 
